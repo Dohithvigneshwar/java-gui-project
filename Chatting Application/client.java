@@ -76,14 +76,19 @@ class test extends JFrame implements ActionListener
 					SimpleDateFormat sd = new SimpleDateFormat("hh:mm a");
 					String time = sd.format(Calendar.getInstance().getTime());
 					String dataout = txt.getText();
-					txta.setText(txta.getText().trim()+"\n\t ME:"+dataout+" "+time);
-					if(dataout.equals("bye")||dataout.equals("end"))
-					{
-						System.exit(0);
+					if(dataout.isEmpty()){
+						JOptionPane.showMessageDialog(null,"Empty Message Not Permitted To Send","Waring",JOptionPane.WARNING_MESSAGE);
 					}
-					dos.writeUTF(dataout);
-					dos.flush();
-					txt.setText(null);
+					else{
+						txta.setText(txta.getText().trim()+"\n\t ME:"+dataout+" "+time);
+						if(dataout.equals("bye")||dataout.equals("end"))
+						{
+							System.exit(0);
+						}
+						dos.writeUTF(dataout);
+						dos.flush();
+						txt.setText(null);
+					}
 			}
 			catch(Exception ex)
 			{
