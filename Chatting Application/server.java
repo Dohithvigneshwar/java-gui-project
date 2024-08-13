@@ -77,7 +77,11 @@ class demo extends JFrame implements ActionListener
 			{
 				SimpleDateFormat sd = new SimpleDateFormat("hh:mm a");
 				String time = sd.format(Calendar.getInstance().getTime());
-					String dataout = txt.getText();
+				String dataout = txt.getText();
+				if(dataout.isEmpty()){
+					JOptionPane.showMessageDialog(null,"Empty Message Not Permitted To Send","Waring",JOptionPane.WARNING_MESSAGE);
+				}
+				else{
 					txta.setText(txta.getText().trim()+"\n\t ME :"+dataout+"  "+time);
 					if(dataout.equals("bye")||dataout.equals("end"))
 					{
@@ -86,6 +90,7 @@ class demo extends JFrame implements ActionListener
 					dos.writeUTF(dataout);
 					dos.flush();
 					txt.setText(null);	
+				}
 			}
 			catch(Exception ex)
 			{
